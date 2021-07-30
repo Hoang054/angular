@@ -1,0 +1,80 @@
+<div class="container">
+    <table id="tbModule" class="table table-bordered table-hover table-primary mt-2">
+        <thead>
+            <tr>
+                <th>
+                    UserName
+                </th>
+                <th>
+                    FullName
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Gender
+                </th>
+                <th>
+                    Dob
+                </th>
+                <th>
+                    Company
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>Option</th>
+                <th>Admin</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of UserList">
+    <tr>
+        <td>
+            {{item.userName}}
+        </td>
+        <td>
+            {{item.fullName}}
+        </td>
+        <td>
+            {{item.address}}
+        </td>
+        <td>
+            {{item.gender}}
+        </td>
+        <td>
+            {{item.doB}}
+        </td>
+        <td>
+            {{item.company}}
+        </td>
+        <td>
+            <img height="50px;" width="50px;" style="border-radius: 70%" src="https://localhost:44355/Images/{{item.imagePath}}" alt="avatar" />
+        </td>
+        <td>
+            <button type="button" class="btn btn-light mr-1" (click)="editClick(item)" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                        <button type="button" class="btn btn-light mr-1" (click)="deleteClick(item)">Delete</button>
+        </td>
+        <td>
+            <div></div>
+        </td>
+    </tr>
+        </tbody>
+    </table>
+    
+    
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngbCollapse]="showModal">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel" >Edit User</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <app-edit-user [user]="user" *ngIf="ActivateSaveUser"></app-edit-user>
+       
+     </div>
+   </div>
+ </div>

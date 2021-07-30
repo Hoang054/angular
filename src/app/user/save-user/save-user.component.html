@@ -1,0 +1,137 @@
+<div class="container">
+    <form class="col-12" [formGroup]="formAddUser">
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label>FullName</label>
+                <input type="text" class="form-control" formControlName="fullName" placeholder="FullName" required>
+                <div *ngIf="formAddUser.get('fullName')?.invalid && (formAddUser.get('fullName')?.dirty || formAddUser.get('fullName')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('fullName')?.errors?.required">
+                    Full Name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>UserName</label>
+                <input type="text" class="form-control" formControlName="userName" placeholder="UserName" required>
+                <div *ngIf="formAddUser.get('userName')?.invalid && (formAddUser.get('userName')?.dirty || formAddUser.get('userName')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('userName')?.errors?.required">
+                        UserName is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label>Gender</label>
+                <select class="form-control" formControlName="gender">
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
+                <div *ngIf="formAddUser.get('gender')?.invalid && (formAddUser.get('gender')?.dirty || formAddUser.get('gender')?.touched)"
+                class="alert alert-danger">
+                        <div *ngIf="formAddUser.get('gender')?.errors?.required">
+                            password is required.
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Birth Day</label>
+                <input type="date" class="form-control" placeholder="BirthDay" formControlName="doB" required>
+                <div *ngIf="formAddUser.get('doB')?.invalid && (formAddUser.get('doB')?.dirty || formAddUser.get('doB')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('doB')?.errors?.required">
+                    Birth Day is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label>Company</label>
+                <input type="text" class="form-control" placeholder="Company" formControlName="company" required>
+                <div *ngIf="formAddUser.get('company')?.invalid && (formAddUser.get('company')?.dirty || formAddUser.get('company')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('company')?.errors?.required">
+                        company is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Address</label>
+                <input type="text" class="form-control" placeholder="Address" formControlName="address" required>
+                <div *ngIf="formAddUser.get('address')?.invalid && (formAddUser.get('address')?.dirty || formAddUser.get('address')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('address')?.errors?.required">
+                        address is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label>PhoneNumber</label>
+                <input type="text" class="form-control" placeholder="PhoneNumber" formControlName="phoneNumber" required>
+                <div *ngIf="formAddUser.get('phoneNumber')?.invalid && (formAddUser.get('phoneNumber')?.dirty || formAddUser.get('phoneNumber')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('phoneNumber')?.errors?.required">
+                        phoneNumber is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Email" formControlName="email" required>
+                <div *ngIf="formAddUser.get('email')?.invalid && (formAddUser.get('email')?.dirty || formAddUser.get('email')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('email')?.errors?.required">
+                        email is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+                <div *ngIf="formAddUser.get('password')?.invalid && (formAddUser.get('password')?.dirty || formAddUser.get('password')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('password')?.errors?.required">
+                        password is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>ConfirmPassword</label>
+                <input type="password" class="form-control" placeholder="ConfirmPassword" formControlName="confirmPassword" required>
+                <div *ngIf="formAddUser.get('confirmPassword')?.invalid && (formAddUser.get('confirmPassword')?.dirty || formAddUser.get('confirmPassword')?.touched)"
+               class="alert alert-danger">
+                    <div *ngIf="formAddUser.get('confirmPassword')?.errors?.required">
+                        confirmPassword is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label>Avatar</label>
+                <div class="custom-file">
+                    <input type='file' (change)="readURL($event);" #avatar  formControlName="imagePath"/>
+                    <div *ngIf="formAddUser.get('imagePath')?.invalid && (formAddUser.get('imagePath')?.dirty || formAddUser.get('imagePath')?.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="formAddUser.get('imagePath')?.errors?.required">
+                            imagePath is required.
+                        </div>
+                    </div>
+                </div>
+                <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" width="200px" alt="your image" />
+            </div>
+        </div>
+
+        <button [disabled]="!formAddUser.valid" type="submit" id="submitButton" class="btn btn-primary submit mb-4" (click)="register()">Register</button>
+    </form>
+    <p>
+        <a href="#">By clicking Signup, I agree to your terms</a>
+    </p>
+</div>

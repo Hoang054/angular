@@ -1,0 +1,58 @@
+<h3>Product</h3>
+<div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="addClick()">
+        Tạo product mới
+    </button>
+
+    <table class="table table-borderless table-striped table-earning">
+        <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Status Product</th>
+                <th>Status</th>
+                <th>Tên Product</th>
+                <th>Hãng</th>
+                <th>Loại</th>
+                <th>Hình Ảnh</th>
+                <th>Giá</th>
+                <th>Ngày mở bán</th>
+                <th>Hành Động</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of ProductList | paginate: { itemsPerPage: 3, currentPage: page }">
+                <td>{{item.id}}</td>
+                <td>{{item.trangThai}}</td>
+                <td>{{item.status}}</td>
+                <td>{{item.productname}}</td>
+                <td>{{item.brandName}}</td>
+                <td>{{item.categoryName}}</td>
+                <td><img src="https://localhost:44355/Images/Product/{{item.image}}" width="100px" height="100px" alt="Error" /></td>
+                <td>{{item.price}}</td>
+                <td>{{item.dateofSale.slice(0, -9)}}</td>
+                <td>
+                    <button type="button" class="btn btn-light mr-1" (click)="editClick(item)" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                    <button type="button" class="btn btn-light mr-1" (click)="deleteClick(item)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div><pagination-controls (pageChange)="page = $event"></pagination-controls></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" >Product</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <app-save-product [product]="product" *ngIf="ActivateSaveProduct"></app-save-product>
+        
+      </div>
+    </div>
+  </div>

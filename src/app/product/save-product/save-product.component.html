@@ -1,0 +1,106 @@
+<form [formGroup]="formAddProduct">
+    <div class="form-group m-4">
+        <div >
+            <input type="hidden" formControlName="id">
+            <div class="row form-group">
+                <label class="col-3">Hình ảnh :</label>
+                <div class="custom-file col-9">
+                    <input type='file' (change)="readURL($event);" #image1 formControlName="image"/>
+                </div>
+                <img id="blah" [src]="imageSrc || 'http://placehold.it/180'" width="200px" alt="your image" />
+            </div>
+            <div class="row form-group">
+                <label class="col-3">Thêm hình ảnh :</label>
+                <div class="col-9">
+                    <input type='file' (change)="readURL1($event);" #images1 formControlName="images" multiple="multiple"
+                            data-rule-required="true"
+                            data-msg-required="Images is required">
+                </div>
+                <div class="row col-9">
+                    <div class="col-4"></div>
+                    <div id="previewImg" class="row" style="margin-left:10px">
+                        <img *ngFor="let item of imageSrcs" src="{{item}}" width="200px" alt="your image" />
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-3">Tên product:</label>
+                <div class="col-9">
+                    <input type="text" class="form-control" placeholder="Nhập tên product"
+                            id="ProductName" formControlName="productname"
+                            data-rule-required="true"
+                            data-msg-required="product name is required">
+                </div>
+            </div>
+            <div class="row form-group">
+                <label for="BrandId" class="col-3">Tên hãng:</label>
+                <div class="col-9">
+                    <select class="custom-select"
+                            id="BrandId" formControlName="brandId"
+                            data-rule-required="true"
+                            data-msg-required="Brand is required">
+                            <option *ngFor="let item of Brand" value="{{item.id}}">{{item.brandName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label for="CategoryId" class="col-3">Tên loại:</label>
+                <div class="col-9">
+                    <select class="custom-select"
+                            id="CategoryId" formControlName="categoryId"
+                            data-rule-required="true"
+                            data-msg-required="Category is required">
+                            <option *ngFor="let item of Category" value="{{item.id}}">{{item.categoryName}}</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row form-group">
+                <div class="col-md-3">
+                    <label >Bài viết mô tả: </label>
+                </div>
+
+                <div [ngxSummernote]="config" class="col-md-6" formControlName="description"></div>
+            </div>
+            <div class="row form-group">
+                <label class="col-3">Nhập Giá:</label>
+                <div class="col-9">
+                    <input type="text" class="form-control" placeholder="Nhập giá"
+                            id="Price" formControlName="price"
+                            data-rule-required="true"
+                            data-msg-required="Price is required">
+                </div>
+            </div>
+            <div class="row form-group">
+                <label for="StatusProduct" class="col-3">Trạng Thái:</label>
+                <div class="col-9">
+                    <select class="custom-select"
+                            id="StatusProduct" formControlName="statusProduct"
+                            data-rule-required="true"
+                            data-msg-required="Status is required">
+                            <option *ngFor="let item of StatusProducts" value="{{item.id}}">
+                                {{item.statusname}}
+                            </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-3">Ngày mở bán:</label>
+                <div class="col-9">
+                    <input type="date" class="form-control"
+                            id="Date" formControlName="dateofSale"
+                            data-rule-required="true"
+                            data-msg-required="DateofSale is required">
+                </div>
+            </div>
+    </div>
+
+    <button [disabled]="!formAddProduct.valid" (click)="addProduct()" *ngIf="product.id==0" class="btn btn-primary" data-dismiss="modal">
+        Add
+    </button>
+
+    <button (click)="addProduct()" *ngIf="product.id!=0" class="btn btn-primary" data-dismiss="modal">
+        Update
+    </button>
+    </div>
+</form>

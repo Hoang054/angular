@@ -1,0 +1,49 @@
+<h3>Brand</h3>
+<div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="addClick()">
+        Tạo Thể Loại
+      </button>
+    <table id="tbModule" class="table table-bordered table-hover table-primary mt-2">
+        <thead class="thead-dark">
+            <tr>
+                <th>Brand Id</th>
+                <th>Brand Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of BrandList">
+                <td>{{item.id}}</td>
+                <td>{{item.brandName}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                    <button type="button" class="btn btn-light mr-1" (click)="editClick(item)" data-toggle="modal" data-target="#exampleModal">Edit</button>
+                    <button type="button" class="btn btn-light mr-1" (click)="deleteClick(item)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngbCollapse]="showModal">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" >Brand</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeClick()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-save-brand [brand]="brand" *ngIf="ActivateSaveBrand"></app-save-brand>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="saveChange()">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
